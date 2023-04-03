@@ -24,6 +24,10 @@
 
 ## 二、数据库操作
 
+CRUD ：增删改查
+
+
+
 ### 1. 查询所有数据库
 
 ```sql
@@ -386,7 +390,7 @@ select * from customers where customer_id between 5 and 9;
 #### 2.5 模糊查询。Like
 
 ```sql
--- 找到第二个字母为a的
+-- 找到第二个字母为a的，_ 为 一个任意字符，% 为任意字符
 select * from customers where last_name like "_a%";
 ```
 
@@ -422,6 +426,32 @@ select * from customers limit 3;
 -- 表示去除前面2行取之后的3行，3表示每一页的长度。
 select * from customers limit 2, 3;
 ```
+
+
+
+#### 2.9 正则表达式查询
+
+```sql
+select * from customers where last_name regexp '^field|mac';
+```
+
+
+
+#### 2.10 分支结构查询
+
+```sql
+// 查询 salary 表，新增一个字段，根据年薪分级。
+SELECT
+	*,
+	CASE 
+         WHEN salary > 10000 THEN 'A'
+         WHEN salary > 8000 THEN 'B'
+         ELSE 'C'
+    END AS salary_grade
+FROM salary;
+```
+
+
 
 
 
